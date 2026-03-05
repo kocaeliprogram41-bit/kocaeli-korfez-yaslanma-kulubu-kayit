@@ -108,9 +108,11 @@ const form=document.getElementById("kayitForm")
 form.addEventListener("submit",e=>{
 e.preventDefault()
 
+const formData = new URLSearchParams(new FormData(form))
+
 fetch(scriptURL,{
 method:"POST",
-body:new FormData(form)
+body:formData
 })
 .then(response=>{
 document.getElementById("sonuc").innerHTML="Kayıt başarıyla gönderildi ✔"
