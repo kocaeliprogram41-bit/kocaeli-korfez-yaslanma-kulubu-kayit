@@ -103,31 +103,24 @@ font-weight:bold;
 <p id="sonuc"></p>
 
 </div>
-
 <script>
+const form = document.querySelector("form");
 
-const scriptURL = "BURAYA_SCRIPT_LINKINI_YAPISTIR"
-const form = document.getElementById("form")
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
 
-form.addEventListener("submit", function(e){
-e.preventDefault()
+  const data = new FormData(form);
 
-fetch(scriptURL,{
-method:"POST",
-body:new FormData(form)
-})
-.then(res=>res.text())
-.then(data=>{
-document.getElementById("sonuc").innerHTML="Kayıt başarıyla gönderildi ✔"
-form.reset()
-})
-.catch(err=>{
-document.getElementById("sonuc").innerHTML="Hata oluştu!"
-})
-
-})
-
+  fetch("https://script.google.com/macros/s/AKfycbwt1pYad0ByPqhKazgPkxuaanuezp2YNtBh2RuTFNItFdyzSBAT19zLvs5yhvjZ9IEI7w/exec", {
+    method: "POST",
+    body: data
+  })
+  .then(res => res.text())
+  .then(data => {
+    alert("Kayıt başarılı");
+    form.reset();
+  });
+});
 </script>
-
 </body>
 </html>
