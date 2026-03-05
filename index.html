@@ -19,7 +19,7 @@ margin:0;
 }
 
 .form-container{
-background:rgba(255,255,255,0.85);
+background:rgba(255,255,255,0.9);
 border-radius:20px;
 padding:40px;
 width:100%;
@@ -58,6 +58,11 @@ font-size:16px;
 font-weight:bold;
 cursor:pointer;
 }
+
+#sonuc{
+margin-top:15px;
+font-weight:bold;
+}
 </style>
 </head>
 
@@ -67,7 +72,7 @@ cursor:pointer;
 
 <h1>+60 Yaş Yaşlanma Kulübü</h1>
 
-<form id="kayitForm">
+<form id="form">
 
 <label>TC Kimlik Numaranız</label>
 <input type="text" name="tc" maxlength="11" required>
@@ -101,24 +106,22 @@ cursor:pointer;
 
 <script>
 
-const scriptURL="https://script.google.com/macros/s/AKfycbwR7RPB6yCv5_PsI1tBO8chHvzME424-HyO16Pf0ctWXAeDAwvVAEqJnkYOYgq9szx25A/exec"
+const scriptURL = "BURAYA_SCRIPT_LINKINI_YAPISTIR"
+const form = document.getElementById("form")
 
-const form=document.getElementById("kayitForm")
-
-form.addEventListener("submit",e=>{
+form.addEventListener("submit", function(e){
 e.preventDefault()
-
-const formData = new URLSearchParams(new FormData(form))
 
 fetch(scriptURL,{
 method:"POST",
-body:formData
+body:new FormData(form)
 })
-.then(response=>{
+.then(res=>res.text())
+.then(data=>{
 document.getElementById("sonuc").innerHTML="Kayıt başarıyla gönderildi ✔"
 form.reset()
 })
-.catch(error=>{
+.catch(err=>{
 document.getElementById("sonuc").innerHTML="Hata oluştu!"
 })
 
@@ -127,4 +130,4 @@ document.getElementById("sonuc").innerHTML="Hata oluştu!"
 </script>
 
 </body>
-</html> 
+</html>
