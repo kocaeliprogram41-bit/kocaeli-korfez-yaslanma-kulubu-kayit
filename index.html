@@ -93,8 +93,11 @@ font-weight:bold;
 <select name="cinsiyet" required>
 <option value="erkek">Erkek</option>
 <option value="kadin">Kadın</option>
-<option value="belirtmekistemiyorum">Belirtmek İstemiyorum</option>
+  
 </select>
+
+<label>Mesleğiniz</label>
+<input type="text" name="meslek" required>
 
 <button type="submit">Kayıt Ol</button>
 
@@ -103,6 +106,7 @@ font-weight:bold;
 <p id="sonuc"></p>
 
 </div>
+
 <script>
 const form = document.querySelector("form");
 
@@ -111,7 +115,7 @@ form.addEventListener("submit", function(e) {
 
   const data = new FormData(form);
 
-  fetch("https://script.google.com/macros/s/AKfycbwt1pYad0ByPqhKazgPkxuaanuezp2YNtBh2RuTFNItFdyzSBAT19zLvs5yhvjZ9IEI7w/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbzKdkDdDm8uT1ryHmsHDeOxuD25Q7e35rG3RZfFPw10UbG4lLTr7SS5NfoOb7cCUSnTug/exec", {
     method: "POST",
     body: data
   })
@@ -122,5 +126,6 @@ form.addEventListener("submit", function(e) {
   });
 });
 </script>
+
 </body>
 </html>
